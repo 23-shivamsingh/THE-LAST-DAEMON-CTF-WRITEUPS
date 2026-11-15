@@ -1,0 +1,52 @@
+$ python3 cd_mysolve.py player_pack
+=== BAND 1: encodings ===
+L01 base64 SU5L -> 'INK'  handoff=INK
+L02 hex -> 'INK|PRESS'  prefix ok (INK), handoff=PRESS
+L03 binary -> 'PRESS|NORTH'  prefix ok, handoff=NORTH
+L04 base64 -> 'NORTH|LAMP'  prefix ok, handoff=LAMP
+L05 hex -> 'LAMP|ECHO'  prefix ok, handoff=ECHO
+=== BAND 2: Caesar / ROT13 / Atbash ===
+L06 caesar-3 HFKR|PDUJLQ -> 'ECHO|MARGIN'  prefix ok, handoff=MARGIN
+L07 unknown shift: trying 26 shifts, match at shift=9: VJAPRW|LXUDVW -> 'MARGIN|COLUMN'
+     handoff=COLUMN
+L08 caesar-5 HTQZRS|YDUJ -> 'COLUMN|TYPE'  prefix ok, handoff=TYPE
+L09 rot13 GLCR|VAXJRYY -> 'TYPE|INKWELL'  prefix ok, handoff=INKWELL
+L10 atbash RMPDVOO|JFROO -> 'INKWELL|QUILL'  prefix ok, handoff=QUILL
+=== BAND 3: single-byte XOR, crib "Dear" ===
+L11 key=0x6c (108='l')  pt='Dear editor: previous seal=QUILL; next seal=CARBON.'
+     previous seal 'quill' present: OK
+     next seal/handoff=CARBON
+L12 key=0x6c (108='l')  pt='Dear editor: previous seal=CARBON; next seal=MASTHEAD.'
+     previous seal 'carbon' present: OK
+     next seal/handoff=MASTHEAD
+L13 key=0x6c (108='l')  pt='Dear editor: previous seal=MASTHEAD; next seal=BLUEPENCIL.'
+     previous seal 'masthead' present: OK
+     next seal/handoff=BLUEPENCIL
+L14 key=0x6c (108='l')  pt='Dear editor: previous seal=BLUEPENCIL; next seal=PROOF.'
+     previous seal 'bluepencil' present: OK
+     next seal/handoff=PROOF
+L15 key=0x6c (108='l')  pt='Dear editor: previous seal=PROOF; the drawer key byte=108 (ASCII l).'
+     previous seal 'proof' present: OK
+     next seal/handoff=108
+=== BAND 4: 4-letter shorthand substitution ===
+L16 seal=108 selects 'BXMQB BXMQB BMQX'; frequencies={'B': 5, 'X': 3, 'M': 3, 'Q': 3}; remaining symbol B (most frequent=B) -> T
+     decoded 'TREAT TREAT TEAR'  handoff(last word)=TEAR
+L17 seal=TEAR selects 'BXMQB BXMQB XQBM'; frequencies={'B': 5, 'X': 3, 'M': 3, 'Q': 3}; remaining symbol B (most frequent=B) -> T
+     decoded 'TREAT TREAT RATE'  handoff(last word)=RATE
+L18 seal=RATE selects 'BXMQB BXMQB BXMQB'; frequencies={'B': 6, 'X': 3, 'M': 3, 'Q': 3}; remaining symbol B (most frequent=B) -> T
+     decoded 'TREAT TREAT TREAT'  handoff(last word)=TREAT
+L19 seal=TREAT selects 'BXMQB BXMQB MQBMX'; frequencies={'B': 5, 'X': 3, 'M': 4, 'Q': 3}; remaining symbol B (most frequent=B) -> T
+     decoded 'TREAT TREAT EATER'  handoff(last word)=EATER
+L20 seal=EATER selects 'BXMQB BXMQB BMQ'; frequencies={'B': 5, 'X': 2, 'M': 3, 'Q': 3}; remaining symbol B (most frequent=B) -> T
+     decoded 'TREAT TREAT TEA'  handoff(last word)=TEA
+=== BAND 5: fragment registers + Vigenere ===
+L21 seal=TEA fragment SU5L -> 'ink' (matches Band-1 first fragment INK)
+L22 seal=INK row: decimal 108 -> ASCII 'l' (matches Band-3 key byte)
+L23 index=l fragment TEA -> 'tea' (matches Band-4 last shorthand word TEA)
+L24 assembled Vigenere key = 'inkltea'
+     candidate A: 'BUO OKEWME SD XQPBL' -> 'THE DRAWER IS EMPTY'  (4 words)
+     candidate B: 'BUO PWMTWE RTWIS BUO WTWT VBDP' -> 'THE EDITOR HIDES THE LAST NOTE'  (6 words)
+     -> exactly six words: genuine headline. check token=SIXWORDS
+L25 body with seal=SIXWORDS: 'BUO PWMTWE VPYX ftnq{n1il3r_lekh3k_q4sb3ei} TGWILR DSX HRIJOC.'
+     decrypted -> 'THE EDITOR LEFT flag{c1ph3r_draw3r_m4st3ry} INSIDE THE DRAWER.'
+FINAL FLAG: flag{c1ph3r_draw3r_m4st3ry}

@@ -1,0 +1,139 @@
+--- LAYER 2 (affine_hex) ---
+  token = 11c62c41dd7e4fa5bb38255f3fab4c6c
+  D(y)=a^-1*(y-b) mod 16, a=13, b=14, a^-1=5
+--- LAYER 3 (ecb_oracle) ---
+  token = 0eff812612710d6b6dc68f03c85c196d
+  byte-at-a-time: each row's target block matched against 256 candidate blocks; index = recovered byte
+--- LAYER 7 (ecb_oracle_prefix) ---
+  token = 2fe075ac38a2f074911674ad78dd3008
+  byte-at-a-time: each row's target block matched against 256 candidate blocks; index = recovered byte
+--- LAYER 8 (base32_shift) ---
+  token = 264d73da0da1c1a0eb2c958532da1f55
+  undo alphabet shift 7, then base32 decode
+--- LAYER 16 (affine_hex) ---
+  token = 2ec1ce103f73aa0413949d6c1deca39e
+  D(y)=a^-1*(y-b) mod 16, a=3, b=8, a^-1=11
+--- LAYER 18 (base85_shift) ---
+  token = c4ed404aa64b27a605ace3ca904a5d9c
+  undo ROT47, then ASCII85 decode
+--- LAYER 21 (padding_oracle) ---
+  token = 64393f14958cf75cf3cc0bbccc7b3d64
+  pre-recorded valid/invalid vectors -> intermediate bytes -> XOR with previous block; pt=b'64393f14958cf75cf3cc0bbccc7b3d64'
+--- LAYER 22 (affine_hex) ---
+  token = 368ad5dae7208437cb34876f848f368c
+  D(y)=a^-1*(y-b) mod 16, a=3, b=5, a^-1=11
+--- LAYER 23 (padding_oracle) ---
+  token = 5793bf064db3de9a76248dcf7d5d8733
+  pre-recorded valid/invalid vectors -> intermediate bytes -> XOR with previous block; pt=b'5793bf064db3de9a76248dcf7d5d8733'
+--- LAYER 25 (padding_oracle) ---
+  token = 1526679e5298ef0f10c1a5982253d435
+  pre-recorded valid/invalid vectors -> intermediate bytes -> XOR with previous block; pt=b'1526679e5298ef0f10c1a5982253d435'
+--- LAYER 26 (base32_shift) ---
+  token = a61011a3376ee3e8db5eb5d7deec7298
+  undo alphabet shift 20, then base32 decode
+--- LAYER 27 (padding_oracle) ---
+  token = 0f58ee1409cf39e43d1b3b49301ca3c1
+  pre-recorded valid/invalid vectors -> intermediate bytes -> XOR with previous block; pt=b'0f58ee1409cf39e43d1b3b49301ca3c1'
+--- LAYER 29 (padding_oracle) ---
+  token = fba3460371980c12f43fdc3c71287039
+  pre-recorded valid/invalid vectors -> intermediate bytes -> XOR with previous block; pt=b'fba3460371980c12f43fdc3c71287039'
+--- LAYER 32 (affine_hex) ---
+  token = 1234216dd603a8384ccdc40f0c426bd2
+  D(y)=a^-1*(y-b) mod 16, a=11, b=7, a^-1=3
+--- LAYER 36 (base32_shift) ---
+  token = 78b78217f450c584a4b2a448f95c7ba4
+  undo alphabet shift 26, then base32 decode
+--- LAYER 42 (affine_hex) ---
+  token = dc9ef2ff00086c4539c5574a0fca41a4
+  D(y)=a^-1*(y-b) mod 16, a=7, b=15, a^-1=7
+--- LAYER 46 (base85_shift) ---
+  token = 566449a85d813e15d3c046af5f216718
+  undo ROT47, then ASCII85 decode
+--- LAYER 52 (affine_hex) ---
+  token = 908e1eac6074ec47b231e5dee1b8eeb0
+  D(y)=a^-1*(y-b) mod 16, a=11, b=8, a^-1=3
+--- LAYER 53 (timestamp_key) ---
+  token = 4b21a585dd626418ceb374578befff4b
+  timestamp=1700064010, key=sha256(str)32; pt=b'TIME|4b21a585dd626418ceb374578befff4b'
+--- LAYER 55 (weak_prng) FAILED: AssertionError('no seed hit')
+--- LAYER 56 (base32_shift) ---
+  token = b5ce4cae629884b16b80336aca5ce669
+  undo alphabet shift 19, then base32 decode
+--- LAYER 57 (salt_reuse) ---
+  token = 168907ab415c1dca392c1d95bd0c63b8
+  password='blueteam' (same unsalted SHA-256 key reused); known msg=b'KNOWN|b5ce4cae629884b1'; target=b'SALT|168907ab415c1dca392c1d95bd0c63b8'
+--- LAYER 58 (base85_shift) ---
+  token = 861b68b91ba74d8369b3ebea6af617bb
+  undo ROT47, then ASCII85 decode
+--- LAYER 59 (fast_hash_kdf) ---
+  token = ef8e98bdc7b5559ba529db1a26032871
+  dictionary hit: password='public', key=SHA-256(password) unsalted; pt=b'FAST|ef8e98bdc7b5559ba529db1a26032871'
+--- LAYER 62 (affine_hex) ---
+  token = 9cfe07df39ffc9d0f77365334aae3c4f
+  D(y)=a^-1*(y-b) mod 16, a=1, b=6, a^-1=1
+--- LAYER 66 (base85_shift) ---
+  token = ee5a3eb5f3a3260df1dc95fcf4acfb22
+  undo ROT47, then ASCII85 decode
+--- LAYER 71 (mitm) FAILED: AssertionError('no key pair')
+--- LAYER 72 (affine_hex) ---
+  token = 47629a81db48fc9a1414a1996e7971e4
+  D(y)=a^-1*(y-b) mod 16, a=5, b=8, a^-1=13
+--- LAYER 73 (mitm_des2) FAILED: AssertionError('no key pair')
+--- LAYER 75 (rsa_small_e) ---
+  token = 9b0d1e7895120d7db16080f8b277f8eb
+  m^3 < n so exact integer cube root; no padding
+--- LAYER 76 (base32_shift) ---
+  token = 1304a0d183647e5627c473f88ee9f402
+  undo alphabet shift 6, then base32 decode
+--- LAYER 77 (mitm) FAILED: AssertionError('no key pair')
+--- LAYER 79 (tmto) FAILED: AssertionError('no key pair')
+--- LAYER 81 (timing) ---
+  token = a636af00975191a64e91996f31731773
+  min-timing candidate key = 0x7f
+--- LAYER 82 (affine_hex) ---
+  token = 741c30e5f96270ffcda8c58cbac64a1c
+  D(y)=a^-1*(y-b) mod 16, a=7, b=5, a^-1=7
+--- LAYER 83 (cache_trace) ---
+  token = cacf1497e8cda59f85c805a0de017c9d
+  high nibble 0xe from way leak; low nibble 0x7 brute-forced (hex-shape check) -> key 0xe7
+--- LAYER 85 (error_leak) ---
+  token = 4222d5fb0942dd135c186685b3e76bd7
+  pre-recorded valid/invalid vectors -> intermediate bytes -> XOR with previous block; pt=b'4222d5fb0942dd135c186685b3e76bd7'
+--- LAYER 86 (base85_shift) ---
+  token = 07ff59c0d9dd449292b6fcf61d441fc3
+  undo ROT47, then ASCII85 decode
+--- LAYER 87 (timing) ---
+  token = 46cb40eeb0221a7f9d739e8f78debec2
+  min-timing candidate key = 0x21
+--- LAYER 89 (padding_error) ---
+  token = e11243c3e7ca3fe58bd728ea53327447
+  pre-recorded valid/invalid vectors -> intermediate bytes -> XOR with previous block; pt=b'e11243c3e7ca3fe58bd728ea53327447'
+--- LAYER 91 (padding_oracle) ---
+  token = e547a67e3fc7379375831775b79818df
+  pre-recorded valid/invalid vectors -> intermediate bytes -> XOR with previous block; pt=b'e547a67e3fc7379375831775b79818df'
+--- LAYER 92 (affine_hex) ---
+  token = 4d71a4f89f5f2c4c96e12aca886816da
+  D(y)=a^-1*(y-b) mod 16, a=7, b=4, a^-1=7
+--- LAYER 96 (base32_shift) ---
+  token = a9a4919378269955ea431a33810157a4
+  undo alphabet shift 2, then base32 decode
+--- LAYER 98 (base85_shift) ---
+  token = 529f09c5da8f9464530b12ed9c22f9a4
+  undo ROT47, then ASCII85 decode
+--- LAYER 99 (gcm_forgery) ---
+  token = e6293025c80c11b10abdbf9135a2e9d6
+  GHASH subkey H recovered from same-nonce pair (H^2 = dT/dC in GF(2^128), H = (H^2)^(2^127)); forged tag VERIFIED: sha256(tag bytes) prefix matches the layer check
+--- LAYER 33 (gcm_reuse) ---
+  token = c43195ff055bb96a2f882d0c86b645b0
+  reused-stream cancellation with the verified previous token (L32) as known plaintext
+--- LAYER 34 (xor_reuse) ---
+  token = 92c4c167b990d964593ea718f3346475
+  reused-stream cancellation with the verified previous token (L33) as known plaintext
+--- LAYER 88 (xor_reuse) ---
+  token = f88409982039edde6d6224b753cf4719
+  reused-stream cancellation with the verified previous token (L87) as known plaintext
+--- LAYER 93 (ctr_reuse) ---
+  token = 93413e607ce6362fc504e2edbfa05ecc
+  reused-stream cancellation with the verified previous token (L92) as known plaintext
+
+tokens recovered: 44 -> [2, 3, 7, 8, 16, 18, 21, 22, 23, 25, 26, 27, 29, 32, 33, 34, 36, 42, 46, 52, 53, 56, 57, 58, 59, 62, 66, 72, 75, 76, 81, 82, 83, 85, 86, 87, 88, 89, 91, 92, 93, 96, 98, 99]
