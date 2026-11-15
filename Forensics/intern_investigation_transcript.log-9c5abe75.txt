@@ -1,0 +1,155 @@
+== L01 device_note mtime (TZ=UTC extract) ==
+2026-04-14 23:50:00.000000000 +0000  evidence/metadata/device_note.txt
+== L04 copy_complete mtime ==
+2026-04-15 00:12:00.000000000 +0000  evidence/metadata/copy_complete.log
+== L05 evt mtimes ==
+evidence/metadata/event_artifacts/01_boot.evt 2026-04-14 23:42:00.000000000 +0000
+evidence/metadata/event_artifacts/02_usb_mount.evt 2026-04-14 23:50:00.000000000 +0000
+evidence/metadata/event_artifacts/03_copy.evt 2026-04-15 00:12:00.000000000 +0000
+evidence/metadata/event_artifacts/04_delete.evt 2026-04-15 00:18:00.000000000 +0000
+evidence/metadata/event_artifacts/05_logoff.evt 2026-04-15 00:21:00.000000000 +0000
+evidence/metadata/event_artifacts/decoy_backup.evt 2026-04-15 00:05:00.000000000 +0000
+
+== L05 event_reference check ==
+asset_id,event_file,event_name,timestamp_utc,sequence_id
+LAPTOP-17,01_boot.evt,BOOT,2026-04-14T23:42:00Z,SEQ-7
+LAPTOP-17,02_usb_mount.evt,USB_MOUNT,2026-04-14T23:50:00Z,SEQ-7
+LAPTOP-17,03_copy.evt,COPY,2026-04-15T00:12:00Z,SEQ-7
+LAPTOP-17,04_delete.evt,DELETE_TEMP,2026-04-15T00:18:00Z,SEQ-7
+LAPTOP-17,05_logoff.evt,LOGOFF,2026-04-15T00:21:00Z,SEQ-7
+LAB-KIOSK,decoy_backup.evt,BACKUP_CHECK,2026-04-15T00:05:00Z,SEQ-2
+
+== L06 media_catalog ==
+sequence_id,media_label,image_file,description
+SEQ-7,USB-7,usb7_fragment.img,media mounted during the laptop copy sequence
+SEQ-2,USB-2,usb2_fragment.img,scheduled training-station backup; unrelated
+
+== L07 carve ==
+stream 01: offset=0x27 -> /tmp/f1/carved/stream_01.txt (69 bytes)
+stream 02: offset=0x8c -> /tmp/f1/carved/stream_02.txt (77 bytes)
+stream 03: offset=0xf4 -> /tmp/f1/carved/stream_03.txt (70 bytes)
+total 2
+drwxr-xr-x 2 sandbox sandbox 128 Nov 15 01:06 .
+drwxr-xr-x 4 sandbox sandbox  60 Nov 15 01:06 ..
+-rw-r--r-- 1 sandbox sandbox  69 Nov 15 01:06 stream_01.txt
+-rw-r--r-- 1 sandbox sandbox  77 Nov 15 01:06 stream_02.txt
+-rw-r--r-- 1 sandbox sandbox  70 Nov 15 01:06 stream_03.txt
+-- /tmp/f1/carved/stream_01.txt
+DELETED TEXT RECORD
+Ticket=CASE-417
+Recovered from unallocated area.
+-- /tmp/f1/carved/stream_02.txt
+DELETED TRANSFER NOTE
+archive=WEST-ARCHIVE
+profile=AUTH-07
+operator=field_op
+-- /tmp/f1/carved/stream_03.txt
+DECOY NOTE
+archive=EAST-ARCHIVE
+profile=AUTH-02
+reason=training cache
+
+== L08 sector_index ==
+ticket,stream_label,offset_hex,compressed_length,sha256_uncompressed,archive_label
+CASE-417,STREAM-02,0x8c,97,6b213cdebaacceead3eaf0641b1e3c7edb51740c8c187b7f766102f14972ee80,WEST-ARCHIVE
+CASE-417,STREAM-03,0xf4,90,dbcca55b399ecacdfdb9566d6c1e89d5215440566412f24d13c81ba69c31e661,EAST-ARCHIVE
+
+== L10 stream_02 SHA-256 ==
+6b213cdebaacceead3eaf0641b1e3c7edb51740c8c187b7f766102f14972ee80  /tmp/f1/carved/stream_02.txt
+
+== L12 interactive LOGIN_SUCCESS in AUTH-07.log ==
+2026-04-15T23:58:12Z LOGIN_SUCCESS account=svc_health source=203.0.113.88 session=H-0001 mode=service_check
+2026-04-16T00:42:17Z LOGIN_SUCCESS account=field_op source=198.51.100.27 session=F-6F2A mode=interactive
+2026-04-16T01:10:09Z LOGIN_SUCCESS account=svc_backup source=203.0.113.90 session=H-0002 mode=scheduled_backup
+
+-- full AUTH-07.log for context --
+# AUTH-07 authentication events (UTC)
+2026-04-15T23:58:12Z LOGIN_SUCCESS account=svc_health source=203.0.113.88 session=H-0001 mode=service_check
+2026-04-16T00:05:04Z LOGIN_FAILURE account=guest source=192.0.2.44 session=F-0000 mode=interactive
+2026-04-16T00:42:17Z LOGIN_SUCCESS account=field_op source=198.51.100.27 session=F-6F2A mode=interactive
+2026-04-16T01:10:09Z LOGIN_SUCCESS account=svc_backup source=203.0.113.90 session=H-0002 mode=scheduled_backup
+2026-04-16T01:24:44Z LOGOUT account=field_op source=198.51.100.27 session=F-6F2A mode=interactive
+
+== L13 firewall case-upload ==
+2026-04-16T00:42:18Z ALLOW src=198.51.100.27 dst=192.0.2.17 port=8443 session=F-6F2A rule=case-upload
+
+== L14 connection_map ==
+session,host_alias,endpoint,purpose
+F-6F2A,DELTA-04,192.0.2.17:8443,interactive laptop evidence upload
+H-0002,KAPPA-02,192.0.2.40:22,scheduled backup service
+H-0001,OMEGA-01,192.0.2.41:443,health check
+
+== L15 host_timeline ==
+host_alias,asset_id,capture_id,time_utc,capture_status
+DELTA-04,LAPTOP-17,MEM-DELTA-04,2026-04-16T00:44:00Z,captured
+KAPPA-02,LAB-KIOSK,MEM-KAPPA-02,2026-04-16T01:12:00Z,routine-backup
+OMEGA-01,HEALTH-NODE,MEM-OMEGA-01,2026-04-15T23:59:00Z,service-check
+
+== L16/17 strings on memory_DELTA-04.bin ==
+KERNEL-SNAPSHOT: SYNTHETIC TRAINING DATA
+PID=3131 PROCESS=old_sync STATE=terminated SESSION=OLD-22
+vault_pass=decoy-pass PID=3131 SESSION=OLD-22
+PID=4242 PROCESS=vault_agent STATE=running SESSION=F-6F2A USER=archive_op
+page_ref=PAGE-03 host=DELTA-04
+cmdline=/opt/training/vault_agent --case CASE-417
+END-SYNTHETIC-DUMP
+
+== L18 process_table + mapping_index ==
+SYNTHETIC PROCESS TABLE
+PID   PROCESS       STATE       SESSION    HOST
+3131  old_sync      terminated  OLD-22     DELTA-04
+4242  vault_agent   running     F-6F2A     DELTA-04
+8080  indexer       sleeping    SYS-00     DELTA-04
+
+host_capture,pid,process,page_id,state
+MEM-DELTA-04,4242,vault_agent,PAGE-03,active
+MEM-DELTA-04,3131,old_sync,PAGE-02,expired
+
+== L19 page_03 strings ==
+MEMORY PAGE PAGE-03
+PID=4242
+PROCESS=vault_agent
+SESSION=F-6F2A
+vault_user=archive_op
+vault_pass=m3m0ry-saf3
+credential_state=active
+case=CASE-417
+-- page_02 (decoy check) --
+PID=3131
+PROCESS=old_sync
+SESSION=OLD-22
+vault_pass=decoy-pass
+credential_state=expired
+
+== L20 credential_validation ==
+Credential validation record (synthetic)
+Target session: F-6F2A
+Target PID: 4242
+Expected SHA-256 of active vault_pass bytes: a4600379b0462ffcd2f90717826eca158085183e0ba7292187280996a01d2544
+Only validate a candidate found in the active vault_agent page for this exact session.
+
+-- my hash of m3m0ry-saf3 --
+a4600379b0462ffcd2f90717826eca158085183e0ba7292187280996a01d2544  -
+
+== L21 cross_reference ==
+sequence_id,archive_label,interactive_login_event,host_alias,credential_sha256,evidence_id,note
+SEQ-2,EAST-ARCHIVE,2026-04-16T01:10:09Z@203.0.113.90,KAPPA-02,f0610e5d98d3c0c0a7e18a3343bd870081e4c8359a3406dd7542e4f5d86c930d,EVID-02,scheduled backup decoy
+SEQ-7,WEST-ARCHIVE,2026-04-16T00:42:17Z@198.51.100.27,DELTA-04,a4600379b0462ffcd2f90717826eca158085183e0ba7292187280996a01d2544,EVID-07,"matches timeline, recovered record, interactive log entry, host, and validated credential"
+SEQ-7,WEST-ARCHIVE,2026-04-16T01:10:09Z@203.0.113.90,KAPPA-02,c2e1491fcf9f362263c799a1bff66ba762374a143193afcfe265013a97777055,EVID-08,partial match only; scheduled backup session
+
+== L22 vault_EVID-07.enc ==
+FORMAT: B64-XOR-REPEAT
+EVIDENCE-ID: EVID-07
+KEYING: repeat the active vault_pass bytes from the linked memory page
+PLAINTEXT-SHA256: f448ee66ffb3e643fad7985115d5263815780a4f176d1a3a42d38ee3b46be2eb
+PAYLOAD:
+LnI+dTQwYTZrAF8MVBZdQQ1MFwASUjJQDEIESkksFQ4AMkcfRUURUA==
+
+== L23-25 my own decode ==
+decoded payload bytes: 40
+8-byte header check: b'CASEFILE'
+plaintext sha256: f448ee66ffb3e643fad7985115d5263815780a4f176d1a3a42d38ee3b46be2eb
+matches envelope: True
+plaintext:
+CASEFILE
+flag{m3tadata_carv3d_th3_tru7h}
