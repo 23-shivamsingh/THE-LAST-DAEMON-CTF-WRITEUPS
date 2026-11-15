@@ -20,15 +20,15 @@ First blood (first solver) on 21 challenges across 7 categories:
 
 - [Cryptography_CTF_Writeups-147b0f51.pdf](Cryptography/Cryptography_CTF_Writeups-147b0f51.pdf)
 - [archive_shadows_run_log-26e0a962.txt](Cryptography/archive_shadows_run_log-26e0a962.txt)
-- [archive_shadows_solver-24d9a1be.txt](Cryptography/archive_shadows_solver-24d9a1be.txt)
+- [archive_shadows_solver.py](Cryptography/archive_shadows_solver.py)
 - [chain_reaction_run_log-4f471250.txt](Cryptography/chain_reaction_run_log-4f471250.txt)
-- [chain_reaction_solver-d77926ed.txt](Cryptography/chain_reaction_solver-d77926ed.txt)
+- [chain_reaction_solver.py](Cryptography/chain_reaction_solver.py)
 - [cipher_drawer_run_log-96475bf3.txt](Cryptography/cipher_drawer_run_log-96475bf3.txt)
-- [cipher_drawer_solver-532ca96d.txt](Cryptography/cipher_drawer_solver-532ca96d.txt)
+- [cipher_drawer_solver.py](Cryptography/cipher_drawer_solver.py)
 - [lost_theorem_run_log-9daf7905.txt](Cryptography/lost_theorem_run_log-9daf7905.txt)
-- [lost_theorem_solver-1981f826.txt](Cryptography/lost_theorem_solver-1981f826.txt)
+- [lost_theorem_solver.py](Cryptography/lost_theorem_solver.py)
 - [silent_cipher_run_log-08ec4cd7.txt](Cryptography/silent_cipher_run_log-08ec4cd7.txt)
-- [silent_cipher_solver-b9e5d6f2.txt](Cryptography/silent_cipher_solver-b9e5d6f2.txt)
+- [silent_cipher_solver.py](Cryptography/silent_cipher_solver.py)
 
 </details>
 
